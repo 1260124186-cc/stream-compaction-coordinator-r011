@@ -138,7 +138,7 @@ func cloneStream(source *Stream) *Stream {
 		return nil
 	}
 	target := *source
-	target.SealedSegmentIDs = append([]string(nil), source.SealedSegmentIDs...)
+	target.SealedSegmentIDs = append([]string{}, source.SealedSegmentIDs...)
 	return &target
 }
 
@@ -147,7 +147,7 @@ func cloneSegment(source *Segment) *Segment {
 		return nil
 	}
 	target := *source
-	target.SourceSegmentIDs = append([]string(nil), source.SourceSegmentIDs...)
+	target.SourceSegmentIDs = append([]string{}, source.SourceSegmentIDs...)
 	target.ReplicaAcks = make(map[string]ReplicaAck, len(source.ReplicaAcks))
 	for nodeID, ack := range source.ReplicaAcks {
 		target.ReplicaAcks[nodeID] = ack
@@ -168,7 +168,7 @@ func clonePlan(source *CompactionPlan) *CompactionPlan {
 		return nil
 	}
 	target := *source
-	target.SourceSegmentIDs = append([]string(nil), source.SourceSegmentIDs...)
+	target.SourceSegmentIDs = append([]string{}, source.SourceSegmentIDs...)
 	target.SourceGenerations = make(map[string]uint64, len(source.SourceGenerations))
 	for id, generation := range source.SourceGenerations {
 		target.SourceGenerations[id] = generation
